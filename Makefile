@@ -6,7 +6,7 @@
 #    By: bsavinel <bsavinel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/11 09:17:31 by bsavinel          #+#    #+#              #
-#    Updated: 2022/06/11 09:53:51 by plouvel          ###   ########.fr        #
+#    Updated: 2022/06/11 10:21:55 by bsavinel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ SRCS_DIR	=	srcs
 
 OBJS_DIR	=	objs
 
-SRCS		=	main.c
+SRCS		=	main.c			\
+				first_check.c	\
 
 OBJS		=	$(addprefix $(OBJS_DIR)/, $(SRCS:.c=.o))
 
@@ -34,7 +35,11 @@ RM			=	rm -rf
 
 LIBS		=	libft/libft.a
 
+INCS		=	-I includes -I libft/includes
+
 all: header $(NAME)
+
+bonus : all
 
 header:
 		echo "${BLUE}"
@@ -46,11 +51,11 @@ header:
 		echo "${NO_COLOR}"
 
 $(NAME): $(OBJS) $(LIBS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(INCS) $(LIBS)
 
 $(OBJS_DIR)/%.o:$(SRCS_DIR)/%.c
 	mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@ $(INCS)
 
 clean:
 	make -C libft clean

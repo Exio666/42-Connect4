@@ -6,12 +6,16 @@
 /*   By: bsavinel <bsavinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 09:19:33 by bsavinel          #+#    #+#             */
-/*   Updated: 2022/06/11 09:38:53 by bsavinel         ###   ########.fr       */
+/*   Updated: 2022/06/11 10:23:46 by bsavinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "connect4.h"
+
 int main(int ac, char **av)
 {
-	(void)ac;
-	(void)av;
+	if (!first_check(ac, av))
+		return (1);
+	ft_printf("GOOOOOOOD\n");
+	return (0);
 }
