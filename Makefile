@@ -6,27 +6,33 @@
 #    By: bsavinel <bsavinel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/11 09:17:31 by bsavinel          #+#    #+#              #
-#    Updated: 2022/06/11 09:42:33 by bsavinel         ###   ########.fr        #
+#    Updated: 2022/06/11 09:53:51 by plouvel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS	=	srcs/main.c
+SRCS_DIR	=	srcs
 
-OBJS	= 	$(SRCS:.c=.o)
-DEPS	=	$(SRCS:.c=.d)
+OBJS_DIR	=	objs
 
-NAME = Connect4
+SRCS		=	main.c
 
-CPPFLAGS = -Wall -Wextra -Werror -MMD
+OBJS		=	$(addprefix $(OBJS_DIR)/, $(SRCS:.c=.o))
+
+DEPS		=	$(addprefix $(OBJS_DIR)/, $(SRCS:.c=.d))
+
+NAME		=	Connect4
+
+CFLAGS		=	-Wall -Wextra -Werror -MMD
 
 BLUE		=	\033[0;37m
+
 NO_COLOR	=	\033[m
 
-CC = cc
+CC			=	cc
 
-RM = rm -f
+RM			=	rm -rf
 
-LIBS = libft/libft.a
+LIBS		=	libft/libft.a
 
 all: header $(NAME)
 
@@ -40,14 +46,15 @@ header:
 		echo "${NO_COLOR}"
 
 $(NAME): $(OBJS) $(LIBS)
-	$(CC) $(CPPFLAGS) $(OBJS) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
-%.o: %.c
-	$(CC) $(CPPFLAGS) -c $< -o $@
+$(OBJS_DIR)/%.o:$(SRCS_DIR)/%.c
+	mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	make -C libft clean
-	$(RM) $(OBJS) $(DEPS)
+	$(RM) $(OBJS_DIR)
 
 fclean: clean
 	make -C libft fclean
