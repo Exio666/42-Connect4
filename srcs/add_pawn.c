@@ -6,46 +6,44 @@
 /*   By: bsavinel <bsavinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 10:25:59 by bsavinel          #+#    #+#             */
-/*   Updated: 2022/06/11 11:19:38 by bsavinel         ###   ########.fr       */
+/*   Updated: 2022/06/11 14:54:45 by bsavinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "connect4.h"
 
-int	add_pawn(t_connect4 *backpack, unsigned int raw, Player palyer)
+int	add_pawn(t_connect4 *backpack, unsigned int row, Player player)
 {
-	for (int i = 0; i < backpack->nb_line; i++)
+	for (int i = (int)backpack->nb_line - 1; i >= 0; i--)
 	{
-		if (backpack->board[raw][i].played_by == Nobody)
+		if (backpack->board[i][row].played_by == Nobody)
 		{
-			backpack->board[raw][i].played_by = palyer;
-			return (1);
+			backpack->board[i][row].played_by = player;
+			return (i);
 		}
 	}
-	return (0);
+	return (-1);
 }
 
-int	add_pawn_player(t_connect4 *backpack)
+t_point	add_pawn_player(t_connect4 *backpack, Player player)
 {
 	char	*line;
-	int		raw;
+	t_point	point;
 
-	while (!1)
+	while (1)
 	{
 		line = get_next_line(0);
 		if (!line)
-			return (0);
-		raw = ft_atoi(line);
-		if (!check_int(line) || raw < 1 || raw > backpack->nb_raw || (!add_pawn(raw - 1, backpack, Human)))
+			return (point);
+		line[ft_strlen(line) - 1] = 0;
+		point.x = ft_atoi(line) - 1;
+		point.y = add_pawn(backpack, point.x, player);
+		if (!check_int(line) || point.x < 0 || point.x >= (int)backpack->nb_row || point.y == -1)
 		{
-			free(line);
-			ft_printf("The movement is invalid\n");
+			printf("invalid position\n");
+			continue ;
 		}
 		else
-		{
-			free(line);
-			break;
-		}
+			return (point);
 	}
-	return (1);
 }

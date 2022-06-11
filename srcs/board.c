@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   board.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plouvel <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: bsavinel <bsavinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 10:00:08 by plouvel           #+#    #+#             */
-/*   Updated: 2022/06/11 11:19:59 by plouvel          ###   ########.fr       */
+/*   Updated: 2022/06/11 14:10:58 by bsavinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static void	print_col_indicator(unsigned int rows)
 
 void	show_board(t_pawn **board)
 {
-	bool	draw_line = true;
+	bool	drow_line = true;
 	size_t	x, y;
 
 	ft_putstr_fd(HEADER, STDOUT_FILENO);
@@ -69,7 +69,7 @@ void	show_board(t_pawn **board)
 		ft_putstr_fd("\t", STDOUT_FILENO);
 		for (x = 0; !board[y][x].endl; x++)
 		{
-			if (draw_line)
+			if (drow_line)
 				ft_putstr_fd("+---", STDOUT_FILENO);
 			else
 			{
@@ -83,11 +83,11 @@ void	show_board(t_pawn **board)
 				ft_putstr_fd(" ", STDOUT_FILENO);
 			}
 		}
-		if (draw_line)
-			draw_line = false;
+		if (drow_line)
+			drow_line = false;
 		else
 		{
-			draw_line = true;
+			drow_line = true;
 			y++;
 		}
 		ft_putstr_fd("+\n", STDOUT_FILENO);

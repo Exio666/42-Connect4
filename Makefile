@@ -6,7 +6,7 @@
 #    By: bsavinel <bsavinel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/11 09:17:31 by bsavinel          #+#    #+#              #
-#    Updated: 2022/06/11 11:23:14 by bsavinel         ###   ########.fr        #
+#    Updated: 2022/06/11 14:43:23 by bsavinel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,8 @@ OBJS_DIR	=	objs
 SRCS		=	main.c			\
 				board.c			\
 				first_check.c	\
+				add_pawn.c		\
+				check_win.c		\
 
 OBJS		=	$(addprefix $(OBJS_DIR)/, $(SRCS:.c=.o))
 
