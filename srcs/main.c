@@ -6,7 +6,7 @@
 /*   By: bsavinel <bsavinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 09:19:33 by bsavinel          #+#    #+#             */
-/*   Updated: 2022/06/11 11:20:04 by plouvel          ###   ########.fr       */
+/*   Updated: 2022/06/11 11:24:16 by bsavinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,8 @@
 
 int main(int ac, char **av)
 {
-	(void)ac;
-	(void)av;
-
-	t_pawn **board = create_board(6, 7);
-	show_board(board);
-	(void) board;
+	if (!first_check(ac, av))
+		return (1);
+	ft_printf("GOOOOOOOD\n");
+	return (0);
 }

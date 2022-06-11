@@ -6,7 +6,7 @@
 #    By: bsavinel <bsavinel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/11 09:17:31 by bsavinel          #+#    #+#              #
-#    Updated: 2022/06/11 10:23:51 by plouvel          ###   ########.fr        #
+#    Updated: 2022/06/11 11:23:14 by bsavinel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,9 @@ SRCS_DIR	=	srcs
 
 OBJS_DIR	=	objs
 
-SRCS		=	main.c \
-				board.c
+SRCS		=	main.c			\
+				board.c			\
+				first_check.c	\
 
 OBJS		=	$(addprefix $(OBJS_DIR)/, $(SRCS:.c=.o))
 
@@ -38,6 +39,8 @@ LIBS		=	libft/libft.a
 INCS		=	-I includes -I libft/includes
 
 all: header $(NAME)
+
+bonus : all
 
 header:
 		echo "${BLUE}"
