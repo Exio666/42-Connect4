@@ -6,7 +6,7 @@
 /*   By: bsavinel <bsavinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 09:54:29 by plouvel           #+#    #+#             */
-/*   Updated: 2022/06/11 10:18:08 by bsavinel         ###   ########.fr       */
+/*   Updated: 2022/06/11 10:30:18 by bsavinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ typedef struct e_pawn
 typedef struct e_connect4
 {
 	t_pawn	**board;
+	unsigned int nb_line;
+	unsigned int nb_raw;
 }				t_connect4;
 
 int		check_int(char *str);
