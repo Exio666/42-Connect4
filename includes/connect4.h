@@ -6,7 +6,7 @@
 /*   By: plouvel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 09:54:29 by plouvel           #+#    #+#             */
-/*   Updated: 2022/06/11 16:54:34 by plouvel          ###   ########.fr       */
+/*   Updated: 2022/06/11 23:19:35 by plouvel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ typedef struct e_connect4
 /* board.c */
 
 t_pawn	**create_board(t_connect4 *game, int rows, int cols);
+t_pawn	**clone_board(t_connect4 *game);
 void	*free_board(t_connect4 *game);
 void	show_board(t_connect4 *game);
 

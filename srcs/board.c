@@ -6,7 +6,7 @@
 /*   By: plouvel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 10:00:08 by plouvel           #+#    #+#             */
-/*   Updated: 2022/06/11 16:54:36 by plouvel          ###   ########.fr       */
+/*   Updated: 2022/06/11 23:19:37 by plouvel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,33 @@ t_pawn	**create_board(t_connect4 *game, int cols, int rows)
 	return (board);
 }
 
+t_pawn	**clone_board(t_connect4 *game)
+{
+	t_pawn	**board;
+	int		i;
+
+	board = ft_calloc(game->rows, sizeof(t_pawn *));
+	if (!board)
+		return (NULL);
+	for (i = 0; i < game->rows; i++)
+	{
+		board[i] = ft_calloc(game->cols, sizeof(t_pawn));
+		if (!board[i])
+			return (free_board(game));
+		else
+		{
+			for (int col = 0; col < game->cols; col++)
+			{
+				board[i][col].played_by = game->board[i][col].played_by;
+			}
+		}
+	}
+	return (board);
+}
+
 void	*free_board(t_connect4 *game)
 {
-	for (size_t y = 0; game->board[y]; y++)
+	for (int y = 0; y < game->rows; y++)
 		free(game->board[y]);
 	free(game->board);
 	return (NULL);
