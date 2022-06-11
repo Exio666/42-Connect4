@@ -6,7 +6,7 @@
 /*   By: plouvel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 09:54:29 by plouvel           #+#    #+#             */
-/*   Updated: 2022/06/11 11:20:01 by plouvel          ###   ########.fr       */
+/*   Updated: 2022/06/11 16:54:34 by plouvel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CONNECT4_H
 
 #include <stdbool.h>
+#include "all_lib.h"
 
 # define COLOR_BLUE   "\033[94;1m"
 # define COLOR_YELLOW "\033[93;1m"
@@ -42,18 +43,26 @@ typedef enum e_player
 typedef struct e_pawn
 {
 	Player	played_by;
-	bool	endl;
 }				t_pawn;
+
+typedef struct e_position
+{
+	int	x;
+	int	y;
+}				t_position;
 
 typedef struct e_connect4
 {
 	t_pawn	**board;
+	int	rows;
+	int	cols;
+	Player	current_player;
 }				t_connect4;
 
 /* board.c */
 
-t_pawn	**create_board(unsigned int rows, unsigned int lines);
-void	*free_board(t_pawn **board);
-void	show_board(t_pawn **board);
+t_pawn	**create_board(t_connect4 *game, int rows, int cols);
+void	*free_board(t_connect4 *game);
+void	show_board(t_connect4 *game);
 
 #endif
