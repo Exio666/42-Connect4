@@ -1,0 +1,4 @@
+*.o
+*.d
+libft/libft.a
+Connect4
