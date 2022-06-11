@@ -6,7 +6,7 @@
 /*   By: bsavinel <bsavinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 09:19:33 by bsavinel          #+#    #+#             */
-/*   Updated: 2022/06/11 14:49:43 by bsavinel         ###   ########.fr       */
+/*   Updated: 2022/06/11 17:46:48 by bsavinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,16 @@ int main(int ac, char **av)
 		{
 			show_board(backpack.board);
 			t_point p = add_pawn_player(&backpack, Human);
-			printf("(%u %u)\n", p.x, p.y);
+			//printf("(%u %u)\n", p.x, p.y);
+			if (check_win_row(&backpack, p.x, p.y, Human) || check_win_line(&backpack, p.x, p.y, Human) || check_win_diag(&backpack))
+				return (0);
 		}
 		{
 			show_board(backpack.board);
 			t_point p = add_pawn_player(&backpack, AI);
-			printf("(%u %u)\n", p.x, p.y);
+			//printf("(%u %u)\n", p.x, p.y);
+			if (check_win_row(&backpack, p.x, p.y, AI) || check_win_line(&backpack, p.x, p.y, AI) || check_win_diag(&backpack))
+				return (0);
 		}
 	}
 	

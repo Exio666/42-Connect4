@@ -6,7 +6,7 @@
 /*   By: bsavinel <bsavinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 09:54:29 by plouvel           #+#    #+#             */
-/*   Updated: 2022/06/11 14:44:44 by bsavinel         ###   ########.fr       */
+/*   Updated: 2022/06/11 17:47:02 by bsavinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,9 @@ typedef struct e_connect4
 	unsigned int nb_row;
 }				t_connect4;
 
-/* board.c */
+/* 
+ *	board.c
+ */
 
 t_pawn	**create_board(unsigned int rows, unsigned int lines);
 void	*free_board(t_pawn **board);
@@ -71,7 +73,13 @@ void	show_board(t_pawn **board);
 int		check_int(char *str);
 int		first_check(int ac, char **av);
 
+/*
+ *	Check win
+ */
+
 bool	check_win_row(t_connect4 *backpack, int x, int y, Player player);
+bool	check_win_line(t_connect4 *backpack, int x, int y, Player player);
+bool	check_win_diag(t_connect4 *backpack);
 
 /*
  *	Add pawn
