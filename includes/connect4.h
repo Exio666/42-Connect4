@@ -6,16 +6,17 @@
 /*   By: bsavinel <bsavinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 09:54:29 by plouvel           #+#    #+#             */
-/*   Updated: 2022/06/11 14:44:44 by bsavinel         ###   ########.fr       */
+/*   Updated: 2022/06/11 18:40:02 by bsavinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CONNECT4_H
 # define CONNECT4_H
 
-# include "all_lib.h"
-# include <stdbool.h>
-# include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+#include <time.h> 
+#include "all_lib.h"
 
 # define COLOR_BLUE   "\033[94;1m"
 # define COLOR_YELLOW "\033[93;1m"
@@ -28,6 +29,7 @@
 # define MAX_SIZE_LINE 10
 # define MIN_SIZE_ROW 7
 # define MAX_SIZE_ROW 10
+
 # define HEADER \
 BOLD \
 "   ______                            __  __ __\n" \
@@ -47,37 +49,50 @@ typedef enum e_player
 typedef struct e_pawn
 {
 	Player	played_by;
-	bool	endl;
 }				t_pawn;
 
-typedef struct e_point
+typedef struct e_position
 {
-	int x;
-	int y;
-}				t_point;
+	int	x;
+	int	y;
+}				t_position;
 
 typedef struct e_connect4
 {
 	t_pawn	**board;
-	unsigned int nb_line;
-	unsigned int nb_row;
+	int	rows;
+	int	cols;
+	Player	current_player;
 }				t_connect4;
 
-/* board.c */
+/* 
+ * board.c
+ */
 
-t_pawn	**create_board(unsigned int rows, unsigned int lines);
-void	*free_board(t_pawn **board);
-void	show_board(t_pawn **board);
+t_pawn		**create_board(t_connect4 *game, int rows, int cols);
+void		*free_board(t_connect4 *game);
+void		show_board(t_connect4 *game);
+
+/*
+ *	first check
+ */
+
 int		check_int(char *str);
 int		first_check(int ac, char **av);
 
+/*
+ *	Check win
+ */
+
 bool	check_win_row(t_connect4 *backpack, int x, int y, Player player);
+bool	check_win_line(t_connect4 *backpack, int x, int y, Player player);
+bool	check_win_diag(t_connect4 *backpack);
 
 /*
  *	Add pawn
  */
 
-t_point	add_pawn_player(t_connect4 *backpack, Player player);
+t_position	add_pawn_player(t_connect4 *backpack, Player player);
 int	add_pawn(t_connect4 *backpack, unsigned int row, Player player);
 
 #endif

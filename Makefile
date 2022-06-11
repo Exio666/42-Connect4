@@ -6,7 +6,7 @@
 #    By: bsavinel <bsavinel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/11 09:17:31 by bsavinel          #+#    #+#              #
-#    Updated: 2022/06/11 14:43:23 by bsavinel         ###   ########.fr        #
+#    Updated: 2022/06/11 18:22:48 by bsavinel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,11 +14,11 @@ SRCS_DIR	=	srcs
 
 OBJS_DIR	=	objs
 
-SRCS		=	main.c			\
-				board.c			\
-				first_check.c	\
-				add_pawn.c		\
-				check_win.c		\
+SRCS		=	main.c				\
+				board.c				\
+				add_pawn.c			\
+				check_win.c			\
+				first_check.c		\
 
 OBJS		=	$(addprefix $(OBJS_DIR)/, $(SRCS:.c=.o))
 
@@ -26,7 +26,7 @@ DEPS		=	$(addprefix $(OBJS_DIR)/, $(SRCS:.c=.d))
 
 NAME		=	Connect4
 
-CFLAGS		=	-Wall -Wextra -Werror -MMD
+CFLAGS		=	-Wall -Wextra -Werror  -MMD -g3 -fsanitize=address
 
 BLUE		=	\033[0;37m
 
@@ -41,8 +41,6 @@ LIBS		=	libft/libft.a
 INCS		=	-I includes -I libft/includes
 
 all: header $(NAME)
-
-bonus : all
 
 header:
 		echo "${BLUE}"
