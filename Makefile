@@ -6,7 +6,7 @@
 #    By: bsavinel <bsavinel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/11 09:17:31 by bsavinel          #+#    #+#              #
-#    Updated: 2022/06/11 09:40:37 by bsavinel         ###   ########.fr        #
+#    Updated: 2022/06/11 09:42:33 by bsavinel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,12 +46,15 @@ $(NAME): $(OBJS) $(LIBS)
 	$(CC) $(CPPFLAGS) -c $< -o $@
 
 clean:
+	make -C libft clean
 	$(RM) $(OBJS) $(DEPS)
 
 fclean: clean
+	make -C libft fclean
 	$(RM) $(NAME)
 
 re: fclean 
+	make -C libft re
 	make all
 
 libft/libft.a:

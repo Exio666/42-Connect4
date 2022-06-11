@@ -6,7 +6,7 @@
 #    By: bsavinel <bsavinel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/23 11:34:09 by bsavinel          #+#    #+#              #
-#    Updated: 2022/06/11 09:23:37 by bsavinel         ###   ########.fr        #
+#    Updated: 2022/06/11 09:42:54 by bsavinel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -110,7 +110,8 @@ clean:
 fclean: clean
 	$(RM) $(NAME)
 
-re: fclean all 
+re: fclean 
+	make all 
 
 -include $(DEPS)
 
