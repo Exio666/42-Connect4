@@ -6,7 +6,7 @@
 /*   By: bsavinel <bsavinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 18:15:36 by bsavinel          #+#    #+#             */
-/*   Updated: 2022/06/12 14:06:54 by bsavinel         ###   ########.fr       */
+/*   Updated: 2022/06/12 14:19:38 by plouvel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ bool check_win_diag(t_connect4 *backpack)
 	return false;
 }
 
-bool tab_is_full(t_connect4 *backpack)
+bool board_is_full(t_connect4 *backpack)
 {
 	for (int actual_col = 0; actual_col < backpack->cols; actual_col++)
 	{

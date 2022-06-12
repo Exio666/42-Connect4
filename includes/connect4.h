@@ -6,7 +6,7 @@
 /*   By: bsavinel <bsavinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 09:54:29 by plouvel           #+#    #+#             */
-/*   Updated: 2022/06/12 14:06:10 by bsavinel         ###   ########.fr       */
+/*   Updated: 2022/06/12 15:33:55 by plouvel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,4 +144,5 @@ long long	eval_window(t_window * window);
 
 t_minimax	minimax(t_connect4 *game, t_pawn **board, int depth, bool maxPlayer);
 
+bool board_is_full(t_connect4 *backpack);
 #endif
