@@ -6,18 +6,41 @@
 /*   By: bsavinel <bsavinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 09:54:29 by plouvel           #+#    #+#             */
-/*   Updated: 2022/06/12 15:33:55 by plouvel          ###   ########.fr       */
+/*   Updated: 2022/06/12 15:43:05 by plouvel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CONNECT4_H
 # define CONNECT4_H
 
+/*
+ *	Standar libs
+ */
+
 # include <unistd.h>
 # include <stdbool.h>
 # include <stdlib.h>
-# include <time.h> 
+# include <time.h>
+
+/*
+ *	Files includes
+ */
+
 # include "all_lib.h"
+
+/*
+ *	Modifable define
+ */
+
+# define MIN_SIZE_ROW 6
+# define MAX_SIZE_ROW 100
+# define MIN_SIZE_COL 7
+# define MAX_SIZE_COL 100
+# define DEPTH 4
+
+/*
+ *	Unmodifable define
+ */
 
 # define COLOR_BLUE   "\033[94;1m"
 # define COLOR_YELLOW "\033[93;1m"
@@ -26,10 +49,6 @@
 # define COLOR_RESET  "\033[0m"
 # define STR_PAWN_AI    COLOR_BLUE   "X" COLOR_RESET
 # define STR_PAWN_HUMAN COLOR_YELLOW "O" COLOR_RESET
-# define MIN_SIZE_ROW 6
-# define MAX_SIZE_ROW 2147483647
-# define MIN_SIZE_COL 7
-# define MAX_SIZE_COL 2147483647
 
 # define HEADER \
 BOLD \
@@ -92,7 +111,6 @@ int			add_pawn(t_connect4 *backpack, unsigned int row, Player player);
  */
 
 t_pawn		**create_board(t_connect4 *game);
-t_pawn		**clone_board(t_connect4 *game, t_pawn **copy_board);
 void		*free_board(t_connect4 *game, t_pawn **board);
 void		show_board(t_connect4 *game);
 long long	get_score(t_connect4 *game, t_pawn **board, Player player);

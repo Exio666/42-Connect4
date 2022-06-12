@@ -6,7 +6,7 @@
 /*   By: bsavinel <bsavinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 09:19:33 by bsavinel          #+#    #+#             */
-/*   Updated: 2022/06/12 15:33:55 by plouvel          ###   ########.fr       */
+/*   Updated: 2022/06/12 15:42:48 by plouvel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ Player	first_player()
 	return Human;
 }
 
-bool	can_continue(t_connect4 *game)
+static bool	can_continue(t_connect4 *game)
 {
 	if (game->current_player == Human)
 		show_board(game);
@@ -42,7 +42,7 @@ bool	can_continue(t_connect4 *game)
 	return (true);
 }
 
-int	get_user_input(t_connect4 *game)
+static int	get_user_input(t_connect4 *game)
 {
 	char	*line;
 	int		col;
@@ -73,7 +73,6 @@ int	main(int ac, char **av)
 		return (1);
 	game.current_player = first_player();
 	game.board = create_board(&game);
-	game.board[0][game.cols - 1].played_by = Nobody;
 	if (!game.board)
 		return (1);
 	while (can_continue(&game))
@@ -86,7 +85,7 @@ int	main(int ac, char **av)
 		{
 			t_minimax	ret_minimax;
 
-			ret_minimax = minimax(&game, game.board, 5, true);
+			ret_minimax = minimax(&game, game.board, DEPTH, true);
 			playing_pos.x = ret_minimax.col;
 		}
 		playing_pos.y = get_valid_row(&game, game.board, playing_pos.x);

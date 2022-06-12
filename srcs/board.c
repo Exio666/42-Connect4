@@ -6,7 +6,7 @@
 /*   By: bsavinel <bsavinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 10:00:08 by plouvel           #+#    #+#             */
-/*   Updated: 2022/06/12 13:56:11 by bsavinel         ###   ########.fr       */
+/*   Updated: 2022/06/12 15:42:57 by plouvel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,30 +33,6 @@ t_pawn	**create_board(t_connect4 *game)
 	return (board);
 }
 
-t_pawn	**clone_board(t_connect4 *game, t_pawn **copy_board)
-{
-	t_pawn	**board;
-	int		i;
-
-	board = ft_calloc(game->rows, sizeof(t_pawn *));
-	if (!board)
-		return (NULL);
-	for (i = 0; i < game->rows; i++)
-	{
-		board[i] = ft_calloc(game->cols, sizeof(t_pawn));
-		if (!board[i])
-			return (free_board(game, board));
-		else
-		{
-			for (int col = 0; col < game->cols; col++)
-			{
-				board[i][col].played_by = copy_board[i][col].played_by;
-			}
-		}
-	}
-	return (board);
-}
-
 void	*free_board(t_connect4 *game, t_pawn **board)
 {
 	for (int y = 0; y < game->rows; y++)
@@ -70,7 +46,10 @@ static void	print_col_indicator(int cols)
 	ft_putstr_fd("\n\t", STDOUT_FILENO);
 	for (int x = 0; x < cols; x++)
 	{
-		ft_putstr_fd("  ", STDOUT_FILENO);
+		if (x + 1 > 9)
+			ft_putstr_fd(" ", STDOUT_FILENO);
+		else
+			ft_putstr_fd("  ", STDOUT_FILENO);
 		ft_putstr_fd(COLOR_CYAN, STDOUT_FILENO);
 		ft_putnbr_fd((int) x + 1, STDOUT_FILENO);
 		ft_putstr_fd(COLOR_RESET, STDOUT_FILENO);
