@@ -6,11 +6,16 @@
 /*   By: bsavinel <bsavinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 18:11:42 by bsavinel          #+#    #+#             */
-/*   Updated: 2022/06/11 18:27:40 by bsavinel         ###   ########.fr       */
+/*   Updated: 2022/06/12 10:04:59 by bsavinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "connect4.h"
+
+void	drop_pawn(t_pawn **board, t_position pos, Player player)
+{
+	board[pos.y][pos.x].played_by = player;
+}
 
 int	add_pawn(t_connect4 *backpack, unsigned int row, Player player)
 {

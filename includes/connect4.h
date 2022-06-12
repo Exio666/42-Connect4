@@ -6,17 +6,18 @@
 /*   By: bsavinel <bsavinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 09:54:29 by plouvel           #+#    #+#             */
-/*   Updated: 2022/06/12 09:54:53 by bsavinel         ###   ########.fr       */
+/*   Updated: 2022/06/12 10:08:15 by bsavinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CONNECT4_H
 # define CONNECT4_H
 
-#include <stdbool.h>
-#include <stdlib.h>
-#include <time.h> 
-#include "all_lib.h"
+# include <unistd.h>
+# include <stdbool.h>
+# include <stdlib.h>
+# include <time.h> 
+# include "all_lib.h"
 
 # define COLOR_BLUE   "\033[94;1m"
 # define COLOR_YELLOW "\033[93;1m"
@@ -65,38 +66,50 @@ typedef struct e_connect4
 	Player	current_player;
 }				t_connect4;
 
+typedef struct e_window
+{
+	int	equivalent;
+	int	opponent;
+	int	empty;
+}			t_window;
+
+/*
+ *	add_pawn.c
+ */
+
+t_position	add_pawn_player(t_connect4 *backpack, Player player);
+int			add_pawn(t_connect4 *backpack, unsigned int row, Player player);
+void		drop_pawn(t_pawn **board, t_position pos, Player player);
+
 /* 
- * board.c
+ *	board.c
  */
 
 t_pawn		**create_board(t_connect4 *game, int rows, int cols);
+t_pawn		**clone_board(t_connect4 *game);
 void		*free_board(t_connect4 *game);
 void		show_board(t_connect4 *game);
 
 /*
- *	first check
+ *	check_win.c
  */
 
-int		check_int(char *str);
-int		first_check(int ac, char **av);
+bool		check_win_row(t_connect4 *backpack);
+bool		check_win_line(t_connect4 *backpack);
+bool		check_win_diag(t_connect4 *backpack);
+int			tab_is_full(t_connect4 *backpack);
 
 /*
- *	Check win
+ *	first_check.c
  */
 
-bool	check_win_row(t_connect4 *backpack);
-bool	check_win_line(t_connect4 *backpack);
-bool	check_win_diag(t_connect4 *backpack);
+int			check_int(char *str);
+int			first_check(int ac, char **av);
 
 /*
- *	Add pawn
+ *	main.c
  */
 
-t_position	add_pawn_player(t_connect4 *backpack, Player player);
-int	add_pawn(t_connect4 *backpack, unsigned int row, Player player);
-t_pawn	**create_board(t_connect4 *game, int rows, int cols);
-t_pawn	**clone_board(t_connect4 *game);
-void	*free_board(t_connect4 *game);
-void	show_board(t_connect4 *game);
+int			first_player();
 
 #endif

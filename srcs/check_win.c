@@ -6,7 +6,7 @@
 /*   By: bsavinel <bsavinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 18:15:36 by bsavinel          #+#    #+#             */
-/*   Updated: 2022/06/12 09:27:31 by bsavinel         ###   ########.fr       */
+/*   Updated: 2022/06/12 10:00:24 by bsavinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ bool	check_win_line(t_connect4 *backpack)
 	return false;
 }*/
 
-
 bool check_win_diag(t_connect4 *backpack)
 {
 	int suite = 0;
@@ -124,4 +123,17 @@ bool check_win_diag(t_connect4 *backpack)
 		}
 	}
 	return false;
+}
+
+int tab_is_full(t_connect4 *backpack)
+{
+	for (int actual_row = 0; actual_row < (int)backpack->cols; actual_row++)
+	{
+		for (int actual_line = 0; actual_line < (int)backpack->rows; actual_line++)
+		{
+			if (backpack->board[actual_line][actual_row].played_by == Nobody)
+				return 0;
+		}
+	}
+	return 1;
 }

@@ -6,15 +6,11 @@
 /*   By: bsavinel <bsavinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 09:19:33 by bsavinel          #+#    #+#             */
-/*   Updated: 2022/06/12 09:58:10 by bsavinel         ###   ########.fr       */
+/*   Updated: 2022/06/12 10:09:25 by bsavinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "connect4.h"
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
 
 bool	check_valid_col(t_connect4 *game, int selected_col)
 {
@@ -35,36 +31,6 @@ int	get_valid_row(t_connect4 *game, int selected_col)
 	return (row);
 }
 
-int first_player()
-{
-	srand (time(NULL));
-	return rand() % 2;
-}
-
-int tab_is_full(t_connect4 *backpack)
-{
-	for (int actual_row = 0; actual_row < (int)backpack->cols; actual_row++)
-	{
-		for (int actual_line = 0; actual_line < (int)backpack->rows; actual_line++)
-		{
-			if (backpack->board[actual_line][actual_row].played_by == Nobody)
-				return 0;
-		}
-	}
-	return 1;
-}
-
-void	drop_pawn(t_pawn **board, t_position pos, Player player)
-{
-	board[pos.y][pos.x].played_by = player;
-}
-
-typedef struct e_window
-{
-	int	equivalent;
-	int	opponent;
-	int	empty;
-}			t_window;
 
 t_window	get_horizontal_window(t_pawn **board, Player player, t_position pos)
 {
@@ -251,11 +217,17 @@ int	pick_best_move(t_connect4 *game, Player player)
 			game->board[pos.y][pos.x].played_by = Nobody;
 		}
 	}
-	printf("best score : %d\n", best_score);
+	//printf("best score : %d\n", best_score);
 	return (best_col);
 }
 
-int main(int ac, char **av)
+int	first_player()
+{
+	srand (time(NULL));
+	return rand() % 2;
+}
+
+int	main(int ac, char **av)
 {
 	t_connect4	game;
 	t_position p;
