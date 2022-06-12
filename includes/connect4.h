@@ -6,7 +6,7 @@
 /*   By: bsavinel <bsavinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 09:54:29 by plouvel           #+#    #+#             */
-/*   Updated: 2022/06/12 11:55:08 by bsavinel         ###   ########.fr       */
+/*   Updated: 2022/06/12 13:44:10 by bsavinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef enum e_player
 	Nobody,
 	AI,
 	Human,
+	End
 }			Player;
 
 typedef struct e_pawn
@@ -66,6 +67,12 @@ typedef struct e_connect4
 	Player	current_player;
 }				t_connect4;
 
+typedef struct	e_minimax
+{
+	long long	score;
+	int			col;
+}				t_minimax;
+
 typedef struct e_window
 {
 	int	equivalent;
@@ -79,16 +86,17 @@ typedef struct e_window
 
 t_position	add_pawn_player(t_connect4 *backpack, Player player);
 int			add_pawn(t_connect4 *backpack, unsigned int row, Player player);
-void		drop_pawn(t_pawn **board, t_position pos, Player player);
 
 /* 
  *	board.c
  */
 
 t_pawn		**create_board(t_connect4 *game, int rows, int cols);
-t_pawn		**clone_board(t_connect4 *game);
-void		*free_board(t_connect4 *game);
+t_pawn		**clone_board(t_connect4 *game, t_pawn **copy_board);
+void		*free_board(t_connect4 *game, t_pawn **board);
 void		show_board(t_connect4 *game);
+long long	get_score(t_connect4 *game, t_pawn **board, Player player);
+void		drop_pawn(t_pawn **board, t_position pos, Player player);
 
 /*
  *	check_win.c
@@ -111,5 +119,29 @@ int			first_check(int ac, char **av);
  */
 
 int			first_player();
+
+/* 
+ *  checks.c
+ */
+
+bool	check_valid_col(t_connect4 *game, t_pawn **board, int selected_col);
+int		get_valid_row(t_connect4 *game, t_pawn **board, int selected_col);
+bool	check_win_move(t_connect4 *game, t_pawn **board, Player player);
+
+/* 
+ *	window.c
+ */
+
+t_window	get_horizontal_window(t_pawn **board, Player player, t_position pos);
+t_window	get_vertical_window(t_pawn **board, Player player, t_position pos);
+t_window	get_pos_diagonal_window(t_pawn **board, Player player, t_position pos);
+t_window	get_neg_diagonal_window(t_pawn **board, Player player, t_position pos);
+long long	eval_window(t_window * window);
+
+/* 
+ * minimax.c
+ */
+
+t_minimax	minimax(t_connect4 *game, t_pawn **board, int depth, bool maxPlayer);
 
 #endif

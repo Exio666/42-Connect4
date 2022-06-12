@@ -6,7 +6,7 @@
 #    By: bsavinel <bsavinel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/11 09:17:31 by bsavinel          #+#    #+#              #
-#    Updated: 2022/06/12 11:50:09 by bsavinel         ###   ########.fr        #
+#    Updated: 2022/06/12 13:46:01 by bsavinel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,9 @@ SRCS		=	main.c				\
 				add_pawn.c			\
 				check_win.c			\
 				first_check.c		\
+				checks.c			\
+				minimax.c			\
+				window.c			\
 
 OBJS		=	$(addprefix $(OBJS_DIR)/, $(SRCS:.c=.o))
 
@@ -26,7 +29,7 @@ DEPS		=	$(addprefix $(OBJS_DIR)/, $(SRCS:.c=.d))
 
 NAME		=	Connect4
 
-CFLAGS		=	-Wall -Wextra -Werror  -MMD ##-g3 -fsanitize=address
+CFLAGS		=	-Wall -Werror -Wextra -MMD -fsanitize=address -g3
 
 BLUE		=	\033[0;37m
 
