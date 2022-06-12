@@ -6,7 +6,7 @@
 /*   By: plouvel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 10:00:08 by plouvel           #+#    #+#             */
-/*   Updated: 2022/06/11 23:19:37 by plouvel          ###   ########.fr       */
+/*   Updated: 2022/06/12 13:36:23 by plouvel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,14 @@ t_pawn	**create_board(t_connect4 *game, int cols, int rows)
 	{
 		board[i] = ft_calloc(cols, sizeof(t_pawn));
 		if (!board[i])
-			return (free_board(game));
+			return (free_board(game, board));
 	}
 	game->rows = rows;
 	game->cols = cols;
 	return (board);
 }
 
-t_pawn	**clone_board(t_connect4 *game)
+t_pawn	**clone_board(t_connect4 *game, t_pawn **copy_board)
 {
 	t_pawn	**board;
 	int		i;
@@ -47,23 +47,23 @@ t_pawn	**clone_board(t_connect4 *game)
 	{
 		board[i] = ft_calloc(game->cols, sizeof(t_pawn));
 		if (!board[i])
-			return (free_board(game));
+			return (free_board(game, board));
 		else
 		{
 			for (int col = 0; col < game->cols; col++)
 			{
-				board[i][col].played_by = game->board[i][col].played_by;
+				board[i][col].played_by = copy_board[i][col].played_by;
 			}
 		}
 	}
 	return (board);
 }
 
-void	*free_board(t_connect4 *game)
+void	*free_board(t_connect4 *game, t_pawn **board)
 {
 	for (int y = 0; y < game->rows; y++)
-		free(game->board[y]);
-	free(game->board);
+		free(board[y]);
+	free(board);
 	return (NULL);
 }
 
@@ -124,4 +124,70 @@ void	show_board(t_connect4 *game)
 	ft_putstr_fd("+\n", STDOUT_FILENO);
 
 	print_col_indicator(game->cols);
+}
+
+long long	get_score(t_connect4 *game, t_pawn **board, Player player)
+{
+	t_window	horizontal, vertical, pos_diagonal, neg_diagonal, center;
+	long long	score = 0;
+	t_position	pos;
+
+	center.empty = 0;
+	center.equivalent = 0;
+	center.opponent = 0;
+	pos.x = (game->cols - 1) / 2;
+	for (pos.y = game->rows - 1; pos.y >= 0; pos.y--)
+	{
+		if (board[pos.y][pos.x].played_by == player)
+			center.equivalent++;
+	}
+	score += center.equivalent * 6;
+
+	for (pos.y = game->rows - 1; pos.y >= 0; pos.y--)
+	{
+		for (pos.x = 0; pos.x < game->cols - 3; pos.x++)
+		{
+			horizontal = get_horizontal_window(board, player, pos);
+			score += eval_window(&horizontal);
+		}
+	}
+	// Check vertical
+
+	for (pos.x = 0; pos.x < game->cols; pos.x++)
+	{
+		for (pos.y = game->rows - 1; pos.y >= 3; pos.y--)
+		{
+			vertical = get_vertical_window(board, player, pos);
+			score += eval_window(&vertical);
+		}
+	}
+
+	// Check positive diagonal
+
+	for (pos.x = 0; pos.x < game->cols - 3; pos.x++)
+	{
+		for (pos.y = game->rows - 1; pos.y >= 3; pos.y--)
+		{
+			pos_diagonal = get_pos_diagonal_window(board, player, pos);
+			score += eval_window(&pos_diagonal);
+		}
+	}
+
+	// Check negative diagonal
+
+	for (pos.x = 0; pos.x < game->cols - 3; pos.x++)
+	{
+		for (pos.y = game->rows - 1; pos.y >= 3; pos.y--)
+		{
+			neg_diagonal = get_neg_diagonal_window(board, player, pos);
+			score += eval_window(&neg_diagonal);
+		}
+	}
+
+	return (score);
+}
+
+void	drop_pawn(t_pawn **board, t_position pos, Player player)
+{
+	board[pos.y][pos.x].played_by = player;
 }
