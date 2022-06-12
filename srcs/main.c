@@ -6,7 +6,7 @@
 /*   By: bsavinel <bsavinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 09:19:33 by bsavinel          #+#    #+#             */
-/*   Updated: 2022/06/11 19:34:00 by bsavinel         ###   ########.fr       */
+/*   Updated: 2022/06/12 09:10:19 by bsavinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int main(int ac, char **av)
 		{
 			show_board(&game);
 			p = add_pawn_player(&game, Human);
-			if (check_win_row(&game, p.x, p.y, Human) || check_win_line(&game, p.x, p.y, Human) || check_win_diag(&game))
+			if (check_win_row(&game) || check_win_line(&game) || check_win_diag(&game))
 			{
 				ft_printf("The humanity won\n");
 				free_board(&game);
@@ -88,7 +88,7 @@ int main(int ac, char **av)
 		{
 			show_board(&game);
 			p = add_pawn_player(&game, AI);
-			if (check_win_row(&game, p.x, p.y, AI) || check_win_line(&game, p.x, p.y, AI) || check_win_diag(&game))
+			if (check_win_row(&game) || check_win_line(&game) || check_win_diag(&game))
 			{
 				ft_printf("The IA is just superior\n");
 				free_board(&game);

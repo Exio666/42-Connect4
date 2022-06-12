@@ -6,7 +6,7 @@
 /*   By: bsavinel <bsavinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 09:54:29 by plouvel           #+#    #+#             */
-/*   Updated: 2022/06/11 18:40:02 by bsavinel         ###   ########.fr       */
+/*   Updated: 2022/06/12 09:09:36 by bsavinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,8 @@ int		first_check(int ac, char **av);
  *	Check win
  */
 
-bool	check_win_row(t_connect4 *backpack, int x, int y, Player player);
-bool	check_win_line(t_connect4 *backpack, int x, int y, Player player);
+bool	check_win_row(t_connect4 *backpack);
+bool	check_win_line(t_connect4 *backpack);
 bool	check_win_diag(t_connect4 *backpack);
 
 /*
