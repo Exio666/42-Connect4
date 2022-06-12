@@ -6,7 +6,7 @@
 /*   By: bsavinel <bsavinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 09:54:29 by plouvel           #+#    #+#             */
-/*   Updated: 2022/06/12 15:43:05 by plouvel          ###   ########.fr       */
+/*   Updated: 2022/06/12 16:06:45 by plouvel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 # define MAX_SIZE_ROW 100
 # define MIN_SIZE_COL 7
 # define MAX_SIZE_COL 100
-# define DEPTH 4
+# define DEPTH 2
 
 /*
  *	Unmodifable define

@@ -6,11 +6,12 @@
 /*   By: bsavinel <bsavinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 09:19:33 by bsavinel          #+#    #+#             */
-/*   Updated: 2022/06/12 15:42:48 by plouvel          ###   ########.fr       */
+/*   Updated: 2022/06/12 16:06:14 by plouvel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "connect4.h"
+#include <unistd.h>
 
 Player	first_player()
 {
@@ -60,7 +61,7 @@ static int	get_user_input(t_connect4 *game)
 			return (col);
 		}
 		else
-			ft_putstr_fd("Invalid position.\n", 0);
+			ft_putstr_fd("Invalid position.\n", STDERR_FILENO);
 		free(line);
 	}
 }
@@ -74,7 +75,10 @@ int	main(int ac, char **av)
 	game.current_player = first_player();
 	game.board = create_board(&game);
 	if (!game.board)
+	{
+		ft_putstr_fd("Cannot allocate memory.\n", STDERR_FILENO);
 		return (1);
+	}
 	while (can_continue(&game))
 	{
 		t_position	playing_pos;
