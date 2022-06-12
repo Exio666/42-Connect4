@@ -6,7 +6,7 @@
 /*   By: bsavinel <bsavinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 09:19:33 by bsavinel          #+#    #+#             */
-/*   Updated: 2022/06/12 10:09:25 by bsavinel         ###   ########.fr       */
+/*   Updated: 2022/06/12 10:15:45 by bsavinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -230,7 +230,6 @@ int	first_player()
 int	main(int ac, char **av)
 {
 	t_connect4	game;
-	t_position p;
 	int first;
 
 	if (!first_check(ac, av))
@@ -240,16 +239,15 @@ int	main(int ac, char **av)
 	game.rows = 7;
 	game.cols = 6;
 	game.board = create_board(&game, 7, 6);
-	p.x = 0;
-	p.y = 0;
 	while (!tab_is_full(&game))
 	{
 		if (first)
 		{
 			show_board(&game);
-			p = add_pawn_player(&game, Human);
+			add_pawn_player(&game, Human);
 			if (check_win_row(&game) || check_win_line(&game) || check_win_diag(&game))
 			{
+				show_board(&game);
 				ft_printf("The humanity won\n");
 				free_board(&game);
 				return (0);
@@ -257,9 +255,10 @@ int	main(int ac, char **av)
 		}
 		{
 			show_board(&game);
-			p = add_pawn_player(&game, AI);
+			add_pawn(&game, pick_best_move(&game, AI), AI);
 			if (check_win_row(&game) || check_win_line(&game) || check_win_diag(&game))
 			{
+				show_board(&game);
 				ft_printf("The IA is just superior\n");
 				free_board(&game);
 				return (0);
@@ -267,7 +266,8 @@ int	main(int ac, char **av)
 		}
 		first = 1;
 	}
-	ft_printf("Nobody won try again\n");
+	show_board(&game);
+	ft_printf("Nobody won, try again\n");
 	free_board(&game);
 	return (0);
 }
