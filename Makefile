@@ -6,7 +6,7 @@
 #    By: bsavinel <bsavinel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/11 09:17:31 by bsavinel          #+#    #+#              #
-#    Updated: 2022/06/12 15:34:41 by plouvel          ###   ########.fr        #
+#    Updated: 2022/06/12 17:07:26 by plouvel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,9 +26,9 @@ OBJS		=	$(addprefix $(OBJS_DIR)/, $(SRCS:.c=.o))
 
 DEPS		=	$(addprefix $(OBJS_DIR)/, $(SRCS:.c=.d))
 
-NAME		=	Connect4
+NAME		=	connect4
 
-CFLAGS		=	-Wall -Werror -Wextra -MMD
+CFLAGS		=	-Wall -Werror -Wextra -MMD -g
 
 BLUE		=	\033[0;37m
 
