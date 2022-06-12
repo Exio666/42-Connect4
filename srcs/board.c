@@ -6,7 +6,7 @@
 /*   By: bsavinel <bsavinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 10:00:08 by plouvel           #+#    #+#             */
-/*   Updated: 2022/06/12 13:44:27 by bsavinel         ###   ########.fr       */
+/*   Updated: 2022/06/12 13:56:11 by bsavinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,20 @@
 #include <unistd.h>
 #include <stdio.h>
 
-t_pawn	**create_board(t_connect4 *game, int cols, int rows)
+t_pawn	**create_board(t_connect4 *game)
 {
 	t_pawn	**board;
 	int		i;
 
-	board = ft_calloc(rows, sizeof(t_pawn *));
+	board = ft_calloc(game->rows, sizeof(t_pawn *));
 	if (!board)
 		return (NULL);
-	for (i = 0; i < rows; i++)
+	for (i = 0; i < game->rows; i++)
 	{
-		board[i] = ft_calloc(cols, sizeof(t_pawn));
+		board[i] = ft_calloc(game->cols, sizeof(t_pawn));
 		if (!board[i])
 			return (free_board(game, board));
 	}
-	game->rows = rows;
-	game->cols = cols;
 	return (board);
 }
 

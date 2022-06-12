@@ -6,7 +6,7 @@
 /*   By: bsavinel <bsavinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 09:54:29 by plouvel           #+#    #+#             */
-/*   Updated: 2022/06/12 13:44:10 by bsavinel         ###   ########.fr       */
+/*   Updated: 2022/06/12 14:06:10 by bsavinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@
 # define COLOR_RESET  "\033[0m"
 # define STR_PAWN_AI    COLOR_BLUE   "X" COLOR_RESET
 # define STR_PAWN_HUMAN COLOR_YELLOW "O" COLOR_RESET
-# define MIN_SIZE_LINE 6
-# define MAX_SIZE_LINE 2147483647
-# define MIN_SIZE_ROW 7
+# define MIN_SIZE_ROW 6
 # define MAX_SIZE_ROW 2147483647
+# define MIN_SIZE_COL 7
+# define MAX_SIZE_COL 2147483647
 
 # define HEADER \
 BOLD \
@@ -91,7 +91,7 @@ int			add_pawn(t_connect4 *backpack, unsigned int row, Player player);
  *	board.c
  */
 
-t_pawn		**create_board(t_connect4 *game, int rows, int cols);
+t_pawn		**create_board(t_connect4 *game);
 t_pawn		**clone_board(t_connect4 *game, t_pawn **copy_board);
 void		*free_board(t_connect4 *game, t_pawn **board);
 void		show_board(t_connect4 *game);
@@ -105,20 +105,20 @@ void		drop_pawn(t_pawn **board, t_position pos, Player player);
 bool		check_win_row(t_connect4 *backpack);
 bool		check_win_line(t_connect4 *backpack);
 bool		check_win_diag(t_connect4 *backpack);
-int			tab_is_full(t_connect4 *backpack);
+bool		tab_is_full(t_connect4 *backpack);
 
 /*
  *	first_check.c
  */
 
 int			check_int(char *str);
-int			first_check(int ac, char **av);
+int			first_check(int ac, char **av, t_connect4 *backpack);
 
 /*
  *	main.c
  */
 
-int			first_player();
+Player		first_player();
 
 /* 
  *  checks.c

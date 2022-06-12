@@ -6,7 +6,7 @@
 /*   By: bsavinel <bsavinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 18:14:15 by bsavinel          #+#    #+#             */
-/*   Updated: 2022/06/12 11:38:56 by bsavinel         ###   ########.fr       */
+/*   Updated: 2022/06/12 13:53:17 by bsavinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,21 +37,23 @@ int	check_int(char *str)
 	return (1);
 }
 
-int first_check(int ac, char **av)
+int first_check(int ac, char **av, t_connect4 *backpack)
 {
 	if (ac != 3)
 	{
-		ft_printf("Bad number of argument\nThe first argument is the number of line and th second is the nnumber of colums\n");
+		ft_printf("Bad number of argument\n%s <cols> <rows>\n", av[0]);
 		return (0);
 	}
-	if ((!check_int(av[1])) || ft_atoi(av[1]) < MIN_SIZE_ROW || ft_atoi(av[1]) > MAX_SIZE_ROW)
+	backpack->cols = ft_atoi(av[1]);
+	backpack->rows = ft_atoi(av[2]);
+	if ((!check_int(av[1])) || backpack->cols < MIN_SIZE_COL || backpack->cols > MAX_SIZE_COL)
 	{
-		ft_printf("The first argument is bad, you have to choose a number between %d and %d\n", MIN_SIZE_ROW, MAX_SIZE_ROW);
+		ft_printf("The first argument is bad, you have to choose a number between %d and %d\n", MIN_SIZE_COL, MAX_SIZE_COL);
 		return (0);
 	}
-	if ((!check_int(av[2])) || ft_atoi(av[2]) < MIN_SIZE_LINE || ft_atoi(av[2]) > MAX_SIZE_LINE)
+	if ((!check_int(av[2])) || backpack->rows < MIN_SIZE_ROW || backpack->rows > MAX_SIZE_ROW)
 	{
-		ft_printf("The second argument is bad, you have to choose a number between %d and %d\n", MIN_SIZE_LINE, MAX_SIZE_LINE);
+		ft_printf("The second argument is bad, you have to choose a number between %d and %d\n", MIN_SIZE_ROW, MAX_SIZE_ROW);
 		return (0);
 	}
 	return (1);
