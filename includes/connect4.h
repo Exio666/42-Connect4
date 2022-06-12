@@ -6,7 +6,7 @@
 /*   By: bsavinel <bsavinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 09:54:29 by plouvel           #+#    #+#             */
-/*   Updated: 2022/06/12 09:09:36 by bsavinel         ###   ########.fr       */
+/*   Updated: 2022/06/12 09:54:53 by bsavinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,5 +94,9 @@ bool	check_win_diag(t_connect4 *backpack);
 
 t_position	add_pawn_player(t_connect4 *backpack, Player player);
 int	add_pawn(t_connect4 *backpack, unsigned int row, Player player);
+t_pawn	**create_board(t_connect4 *game, int rows, int cols);
+t_pawn	**clone_board(t_connect4 *game);
+void	*free_board(t_connect4 *game);
+void	show_board(t_connect4 *game);
 
 #endif
