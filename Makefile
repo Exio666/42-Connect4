@@ -6,7 +6,7 @@
 #    By: bsavinel <bsavinel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/11 09:17:31 by bsavinel          #+#    #+#              #
-#    Updated: 2022/06/12 09:54:20 by bsavinel         ###   ########.fr        #
+#    Updated: 2022/06/12 11:50:09 by bsavinel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ DEPS		=	$(addprefix $(OBJS_DIR)/, $(SRCS:.c=.d))
 
 NAME		=	Connect4
 
-CFLAGS		=	-Wall -Wextra -Werror  -MMD -g3 -fsanitize=address
+CFLAGS		=	-Wall -Wextra -Werror  -MMD ##-g3 -fsanitize=address
 
 BLUE		=	\033[0;37m
 

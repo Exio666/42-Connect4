@@ -6,7 +6,7 @@
 /*   By: bsavinel <bsavinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 18:11:42 by bsavinel          #+#    #+#             */
-/*   Updated: 2022/06/12 10:04:59 by bsavinel         ###   ########.fr       */
+/*   Updated: 2022/06/12 11:43:50 by bsavinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_position	add_pawn_player(t_connect4 *backpack, Player player)
 	{
 		line = get_next_line(0);
 		if (!line)
-			return (point);
+			continue ;
 		line[ft_strlen(line) - 1] = 0;
 		point.x = ft_atoi(line) - 1;
 		if (!(!check_int(line) || point.x < 0 || point.x >= (int)backpack->cols))

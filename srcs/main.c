@@ -6,7 +6,7 @@
 /*   By: bsavinel <bsavinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 09:19:33 by bsavinel          #+#    #+#             */
-/*   Updated: 2022/06/12 10:15:45 by bsavinel         ###   ########.fr       */
+/*   Updated: 2022/06/12 11:49:05 by bsavinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -235,10 +235,11 @@ int	main(int ac, char **av)
 	if (!first_check(ac, av))
 		return (1);
 	first = first_player();
-	game.current_player = Human;
-	game.rows = 7;
-	game.cols = 6;
-	game.board = create_board(&game, 7, 6);
+	game.rows = ft_atoi(av[1]);
+	game.cols = ft_atoi(av[2]);
+	game.board = create_board(&game, game.rows, game.cols);
+	if (!game.board)
+		return (1);
 	while (!tab_is_full(&game))
 	{
 		if (first)

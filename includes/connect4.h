@@ -6,7 +6,7 @@
 /*   By: bsavinel <bsavinel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 09:54:29 by plouvel           #+#    #+#             */
-/*   Updated: 2022/06/12 10:08:15 by bsavinel         ###   ########.fr       */
+/*   Updated: 2022/06/12 11:55:08 by bsavinel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@
 # define STR_PAWN_AI    COLOR_BLUE   "X" COLOR_RESET
 # define STR_PAWN_HUMAN COLOR_YELLOW "O" COLOR_RESET
 # define MIN_SIZE_LINE 6
-# define MAX_SIZE_LINE 10
+# define MAX_SIZE_LINE 2147483647
 # define MIN_SIZE_ROW 7
-# define MAX_SIZE_ROW 10
+# define MAX_SIZE_ROW 2147483647
 
 # define HEADER \
 BOLD \
